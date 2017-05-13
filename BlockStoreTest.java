@@ -1,5 +1,6 @@
 import org.junit.Test;
 import static org.junit.Assert.*;
+import java.util.Arrays;
 
 /**
  * This is a JUnit Test class.
@@ -109,11 +110,13 @@ public class BlockStoreTest {
       store.insert(col, 18, 's');
       store.insert(col, 19, 't');
     }
-    boolean shouldBeTrue = store.shiftRowsDown(3);
+    
+    boolean shouldBeTrue = store.shiftRowsDown(1);
     assertTrue("Passed", shouldBeTrue);
-
     
-    
+    for(int col = 0; col < blocks.length; col++ ){
+      assertEquals(blocks[col][19],'s');
+    }
     
     boolean shouldBeFalse = store.shiftRowsDown(678678678);
     assertFalse("failed", shouldBeFalse);
